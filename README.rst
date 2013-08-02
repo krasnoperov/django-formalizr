@@ -3,10 +3,10 @@ Django Formalizr
 
 Class Based Views which takes forms throught AJAX and returns JSON response.
 Response includes:
- * status of request
- * validation errors, if any
- * messages from django messages framework, if any
- * url for redirection or result object, in case of success
+ - status of request
+ - validation errors, if any
+ - messages from django messages framework, if any
+ - url for redirection or result object, in case of success
 
 Quick start
 -----------
@@ -40,7 +40,8 @@ Available view classes are: AjaxFormView, AjaxCreateView and AjaxUpdateView. The
 JSON Responses
 --------------
 
-#### Redirect location after successful form submission.
+Redirect location after successful form submission
+++++++++++++++++++++++++++++++++++++++++++++++++++
 
 In simplest case, when form processed without errors and messages, `HTTP 200 OK` is returned with `application/json`::
 
@@ -52,7 +53,8 @@ In simplest case, when form processed without errors and messages, `HTTP 200 OK`
 View's method `get_success_url()` is used to get the redirect location.
 
 
-#### Object and messages after successful form submission
+Object and messages after successful form submission
+++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 If `_return=result` parameter is included into request, then JSON representation of result is returned::
 
@@ -66,7 +68,8 @@ View's method `get_json_object()` is used to dump result into dict, later this d
 Messages are included into response.
 
 
-#### Error messages after failed form submission
+Error messages after failed form submission
++++++++++++++++++++++++++++++++++++++++++++
 
 In case of errors, `HTTP 400 Bad Request` is returned with `application/json` content::
 
@@ -74,9 +77,9 @@ In case of errors, `HTTP 400 Bad Request` is returned with `application/json` co
         "status": "error",
         "error": "Bad Request"
         "errors": {
-                      "__all__":["Common form errors"],
-                      "first-field": ["First field error"],
-                      "second-field": ["Second fields error"]
+                      "__all__": ["Common form errors"],
+                      "name": ["This field is required"],
+                      "email": ["Please enter valid email address"]
                   }
     }
 
